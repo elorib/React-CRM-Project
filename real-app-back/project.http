@@ -1,0 +1,82 @@
+@local=http://localhost:3000
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODBmNDAyYTRlZTQzZTRmMmE5NmZkMiIsImJpeiI6ZmFsc2UsImlhdCI6MTY1MjYxODI0N30.WYToXX__66tfF87oc-5FsiSs4be9GYsuAAI_hYzNoHc
+
+
+POST {{local}}/api/users
+Content-Type: application/json
+
+{ 
+    "name": "elori",
+    "email": "e@e.com",
+    "password": "123456",
+    "biz": false
+}
+
+
+###
+
+POST {{local}}/api/auth
+Content-Type: application/json
+
+{ 
+    "email": "e@e.com",
+    "password": "123456"
+}
+
+
+###
+
+GET {{local}}/api/users/me
+x-auth: {{token}}
+
+###
+
+
+POST {{local}}/api/cards
+x-auth: {{token}}
+Content-Type: application/json
+
+{
+    "bizName": "Kelev inc.",
+    "bizDescription": "Kelev inc. is a kelev company",
+    "bizAddress": "Kelev street 123",
+    "bizPhone": "0531231230"
+}
+
+###
+GET {{local}}/api/cards/6280e18f36f5f16e1e5c84a6
+x-auth: {{token}}
+
+###
+PUT {{local}}/api/cards/6280e18f36f5f16e1e5c84a6
+Content-Type: application/json
+x-auth: {{token}}
+
+{
+    "bizName": "Kelevv inc.",
+    "bizDescription": "Kelev inc. is a kelev company",
+    "bizAddress": "Kelev street 123",
+    "bizPhone": "0531231555"
+}
+
+###
+
+DELETE {{local}}/api/cards/6280e18f36f5f16e1e5c84a6
+x-auth: {{token}}
+
+###
+
+PATCH {{local}}/api/users/cards
+x-auth: {{token}}
+Content-Type: application/json
+
+{
+    "cards":[23223232]
+}
+
+###
+
+
+// Get all cards
+GET {{local}}/api/cards
+x-auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODYwM2VlMjQxYmVlMDkxNDliNjljNiIsImJpeiI6ZmFsc2UsImlhdCI6MTY1Mjk1MDAwM30.Mf8xgTn740BfHtmmvcJUGsCVMmvxFMCoW0uWKxp3lK4
